@@ -3,18 +3,17 @@ import { useNavigate } from "react-router-dom";
 
 export const AppContext = createContext();
 
-    const navigate = useNavigate();
-    const [user, setUser] = useState(null);
-    const [isSeller, setIsSeller] = useState(false)
+export const AppcontextProvider = ({ children }) => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [isSeller, setIsSeller] = useState(false);
+  const [showUserLogin, setShowUserLogin] = useState(false)
 
-const value = {navigate,user,setUser,isSeller,setIsSeller}
+  const value = { navigate, user, setUser, isSeller, setIsSeller, showUserLogin, setShowUserLogin };
 
-export const AppcontextProvider = ({children})=>{
-    return <AppContext.Provider value={value}>
-        {children}
-    </AppContext.Provider>
-}
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+};
 
-export const useAppContext = ()=>{
-    return useContext(AppContext)
-}
+export const useAppContext = () => {
+  return useContext(AppContext);
+};
